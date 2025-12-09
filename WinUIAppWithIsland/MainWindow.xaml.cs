@@ -75,6 +75,9 @@ namespace WinUIAppWithIsland
             childContentIsland = ContentIsland.CreateForSystemVisual(dq, systemContainerVisual);
 
             childSiteLink.Connect(childContentIsland);
+
+            // We recommend setting "ChildSiteLink.LocalToParentTransformMatrix" so that the child content knows
+            // where it is on the screen.  This can be important for UIA scenarios.
         }
     }
 }
