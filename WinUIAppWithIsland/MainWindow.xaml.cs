@@ -27,10 +27,10 @@ namespace WinUIAppWithIsland
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        ChildSiteLink childSiteLink;
-        Windows.UI.Composition.Compositor systemCompositor;
-        Windows.UI.Composition.ContainerVisual systemContainerVisual;
-        Microsoft.UI.Content.ContentIsland contentIsland;
+        ChildSiteLink? childSiteLink;
+        Windows.UI.Composition.Compositor? systemCompositor;
+        Windows.UI.Composition.ContainerVisual? systemContainerVisual;
+        Microsoft.UI.Content.ContentIsland? childContentIsland;
 
         public MainWindow()
         {
@@ -38,10 +38,22 @@ namespace WinUIAppWithIsland
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ContainerVisual placementVisual = (ContainerVisual)ElementCompositionPreview.GetElementVisual(this.IslandHostRect);
+        { 
+            if (childSiteLink != null)
+            {
+                // We set it up previously, so let's detach.
+                childSiteLink.Dispose();
+                childSiteLink = null;
 
+                childContentIsland!.Dispose();
+                childContentIsland = null;
+                return;
+            }
+
+            ContainerVisual placementVisual = (ContainerVisual)ElementCompositionPreview.GetElementVisual(this.IslandHostRect);
             childSiteLink = ChildSiteLink.Create(this.Content.XamlRoot.ContentIsland, placementVisual);
+
+            // This is required whem the child is a system Visual:
             childSiteLink.ProcessesKeyboardInput = false;
             childSiteLink.ProcessesPointerInput = false;
 
@@ -60,9 +72,9 @@ namespace WinUIAppWithIsland
             systemContainerVisual.Children.InsertAtTop(rectangle);
 
             var dq = DispatcherQueue.GetForCurrentThread();
-            contentIsland = ContentIsland.CreateForSystemVisual(dq, systemContainerVisual);
+            childContentIsland = ContentIsland.CreateForSystemVisual(dq, systemContainerVisual);
 
-            childSiteLink.Connect(contentIsland);
+            childSiteLink.Connect(childContentIsland);
         }
     }
 }

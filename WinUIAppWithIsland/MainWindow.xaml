@@ -13,9 +13,9 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <StackPanel Margin="10" Spacing="10">
+    <StackPanel Margin="10" Spacing="10" HorizontalAlignment="Center">
         <TextBlock>WinUI Window hosting island with System Visual</TextBlock>
-        <Button Click="Button_Click">Attach System Visual blue rectangle</Button>
+        <Button Click="Button_Click">Attach/detach System Visual blue rectangle</Button>
         <Grid x:Name="IslandHostRect" Width="400" Height="300" Margin="10" Background="Green">
             <TextBlock Text="This is the xaml content" />
         </Grid>
