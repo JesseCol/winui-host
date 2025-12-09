@@ -13,3 +13,5 @@ Caveats:
 Other notes:
 * Disconnecting the child ContentIsland from its hosting ChildSiteLink isn't currently supported.  The sample shows how to
 remove the child content from the scene by calling childSiteLink.Dispose().
+* We recommend setting childSiteLink.LocalToParentTransformMatrix to tell the child content where it is on the screen.
+This is important for UIA and potentially other future scenarios.
