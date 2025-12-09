@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="WinUIAppWithIsland.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUIAppWithIsland"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="WinUIAppWithIsland">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <StackPanel Margin="10" Spacing="10">
+        <TextBlock>WinUI Window hosting island with System Visual</TextBlock>
+        <Button Click="Button_Click">Attach System Visual blue rectangle</Button>
+        <Grid x:Name="IslandHostRect" Width="400" Height="300" Margin="10" Background="Green">
+            <TextBlock Text="This is the xaml content" />
+        </Grid>
+    </StackPanel>
+</Window>
