@@ -12,4 +12,4 @@ Caveats:
 
 Other notes:
 * Disconnecting the child ContentIsland from its hosting ChildSiteLink isn't currently supported.  The sample shows how to
-remove the child content from the scene by calling childContentLink.Dispose().
+remove the child content from the scene by calling childSiteLink.Dispose().
